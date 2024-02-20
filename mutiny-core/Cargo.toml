@@ -56,6 +56,7 @@ fedimint-mint-client = { git = "https://github.com/fedimint/fedimint", rev = "6a
 fedimint-ln-client = { git = "https://github.com/fedimint/fedimint", rev = "6a923ee10c3a578cd835044e3fdd94aa5123735a" }
 fedimint-bip39 = { git = "https://github.com/fedimint/fedimint", rev = "6a923ee10c3a578cd835044e3fdd94aa5123735a" }
 fedimint-ln-common = { git = "https://github.com/fedimint/fedimint", rev = "6a923ee10c3a578cd835044e3fdd94aa5123735a" }
+moksha-core = { git = "https://github.com/ngutech21/moksha", rev = "0b9a32d216ba0782a4aa2cdb19a87589e16d9089" }
 
 base64 = "0.13.0"
 pbkdf2 = "0.11"
