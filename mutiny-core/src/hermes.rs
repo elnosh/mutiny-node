@@ -599,6 +599,8 @@ struct EcashNotification {
     pub bolt11: Bolt11Invoice,
     /// The preimage for the bolt11 invoice
     pub preimage: String,
+    /// Lnurl comment
+    pub lnurlp_comment: Option<String>
 }
 
 /// Attempts to claim the ecash, if successful, saves the payment info
@@ -681,7 +683,7 @@ async fn handle_ecash_notification<S: MutinyStorage>(
                 persist_payment_info(storage, &payment_hash, &info, true)?;
 
                 // tag the invoice if we can
-                let mut tags = Vec::with_capacity(2);
+                let mut tags = Vec::with_capacity(3);
 
                 // try to tag by contact by npub, otherwise tag by pubkey
                 if let Some(npub) = npub {
@@ -695,6 +697,11 @@ async fn handle_ecash_notification<S: MutinyStorage>(
                 // add message tag if we have one
                 if let Some(msg) = msg.filter(|m| !m.is_empty()) {
                     tags.push(msg);
+                }
+
+                // add lnurl comment if present
+                if let Some(comment) = notification.lnurlp_comment {
+                    tags.push(comment);
                 }
 
                 // save the tags if we have any
